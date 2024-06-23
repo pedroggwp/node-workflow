@@ -16,3 +16,17 @@ jobs:
         run: |
           npm install
           npm test
+      - name: Git Version
+        id: version
+        uses: codacy/git-version@2.7.1
+      - name: Docker Build & Push Action
+        uses: mr-smithers-excellent/docker-build-push@v6.4
+        with:
+            image: pedrosilvanascimento/nodejs-workflow
+            tags: ${{ github.run_number }}, ${{ steps.version.outputs.previous-version }}
+            # tags: ${{ steps.version.outputs.previous-version }}
+            registry: docker.io
+            dockerfile: dockerfile
+            username: ${{secrets.USERNAME}}
+            password: ${{secrets.PASSWORD}}
+        
