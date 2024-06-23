@@ -19,6 +19,8 @@ jobs:
       - name: Git Version
         id: version
         uses: codacy/git-version@2.7.1
+      - name: Login to Docker Hub
+        run: echo ${{ secrets.DOCKER_ACCESS_TOKEN }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
       - name: Docker Build & Push Action
         uses: mr-smithers-excellent/docker-build-push@v6.4
         with:
