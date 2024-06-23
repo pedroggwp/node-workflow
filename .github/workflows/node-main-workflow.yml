@@ -26,7 +26,7 @@ jobs:
             tags: ${{ github.run_number }}, ${{ steps.version.outputs.previous-version }}
             # tags: ${{ steps.version.outputs.previous-version }}
             registry: docker.io
-            dockerfile: dockerfile
+            dockerfile: Dockerfile
             username: ${{secrets.USERNAME}}
             password: ${{secrets.PASSWORD}}
         
