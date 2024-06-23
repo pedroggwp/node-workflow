@@ -3,7 +3,7 @@ name: Continuos Integration
 on: push
 
 jobs:
-  continuos-integration:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,11 +25,10 @@ jobs:
       - name: Docker Build & Push Action
         uses: mr-smithers-excellent/docker-build-push@v6.4
         with:
-            image: pedrosilvanascimento/nodejs-workflow
+            image: pedrosilvanascimento/java_sem_maven
             tags: ${{ github.run_number }}, ${{ steps.version.outputs.previous-version }}
             # tags: ${{ steps.version.outputs.previous-version }}
             registry: docker.io
-            dockerfile: Dockerfile
+            dockerfile: dockerfile
             username: ${{secrets.DOCKER_USERNAME}}
             password: ${{secrets.DOCKER_PASSWORD}}
-        
